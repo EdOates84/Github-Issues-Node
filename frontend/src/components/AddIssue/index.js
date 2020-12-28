@@ -19,7 +19,7 @@ class AddIssue extends Component {
     handleSubmit = (event) => {
       event.preventDefault();
       const data = {author:this.state.author,title:this.state.title,comment:this.state.comment};
-      axios.post(`/api/add-issue/`, data)
+      axios.post(`/api/issue/`, data)
       .then(res => {
           console.log(res)
           this.setState({

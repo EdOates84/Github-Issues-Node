@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-12-27T20:03:56.390Z",
+    "end": "2020-12-27T20:04:10.979Z",
+    "duration": 14589,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "89bbdd6e-41ab-4862-92f1-4db6f21f92b1",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+          "title": "Testing Backend. ",
+          "fullFile": "/home/nitesh/git-issues/backend/__tests__/test.test.js",
+          "file": "/__tests__/test.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Server should store issue and issue should be deleted.",
+              "fullTitle": "Testing Backend.  Server should store issue and issue should be deleted.",
+              "timedOut": false,
+              "duration": 14190,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let issue = {\n    title: \"title created on backend testing\",\n    comment: \"comment created on backend testing\",\n    author: \"author created on backend testing\"\n}\nlet issue_delete_msg = {\n    msg: \"Issue Deleted\"\n}\nchai.request(server)\n    .post(\"/api/issue\")\n    .send(issue)\n    .end((err, res) => {\n        expect(res).to.have.status(200);\n        chai.request(server)\n        .delete(\"/api/issue/\" + res.body.id)\n        .end((err, res) => {\n            expect(res).to.have.status(200);\n            expect(res.body).to.deep.includes(issue_delete_msg)\n            done();\n        });\n    });",
+              "err": {},
+              "uuid": "045d1ccd-c00a-4da6-870e-856d3b221343",
+              "parentUUID": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Server should store issue and return it back on GET issue request.",
+              "fullTitle": "Testing Backend.  Server should store issue and return it back on GET issue request.",
+              "timedOut": false,
+              "duration": 153,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let issue = {\n    title: \"title created on backend testing\",\n    comment: \"comment created on backend testing\",\n    author: \"author created on backend testing\"\n}\nchai.request(server)\n    .post(\"/api/issue\")\n    .send(issue)\n    .end((err, res) => {\n        expect(res).to.have.status(200);\n        chai.request(server)\n            .get(\"/api/issue/\" + res.body.id)\n            .end((err, res) => {\n                expect(res).to.have.status(200);\n                expect(res.body).to.deep.includes(issue)\n                done();\n            });\n    });",
+              "err": {},
+              "uuid": "f4969e89-7863-43ce-82e3-c40e682f95fa",
+              "parentUUID": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Server should return a list of 10 issues for a given page.",
+              "fullTitle": "Testing Backend.  Server should return a list of 10 issues for a given page.",
+              "timedOut": false,
+              "duration": 41,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let issues_list_1 = [{\"id\":1,\"title\":\"Issue1\",\"comment\":\"comment1\",\"author\":\"author1\",\"isOpen\":1},{\"id\":2,\"title\":\"Issue2\",\"comment\":\"comment2\",\"author\":\"author2\",\"isOpen\":1},{\"id\":3,\"title\":\"Issue3\",\"comment\":\"comment3\",\"author\":\"author3\",\"isOpen\":1},{\"id\":4,\"title\":\"Issue4\",\"comment\":\"comment4\",\"author\":\"author4\",\"isOpen\":1},{\"id\":5,\"title\":\"Issue5\",\"comment\":\"comment5\",\"author\":\"author5\",\"isOpen\":0},{\"id\":6,\"title\":\"Issue6\",\"comment\":\"comment6\",\"author\":\"author6\",\"isOpen\":0},{\"id\":7,\"title\":\"Issue7\",\"comment\":\"comment7\",\"author\":\"author7\",\"isOpen\":1},{\"id\":8,\"title\":\"Issue8\",\"comment\":\"comment8\",\"author\":\"author8\",\"isOpen\":1},{\"id\":9,\"title\":\"Issue9\",\"comment\":\"comment9\",\"author\":\"author9\",\"isOpen\":1},{\"id\":10,\"title\":\"Issue10\",\"comment\":\"comment10\",\"author\":\"author10\",\"isOpen\":0}]\n\nlet issues_list_2 = [{\"id\":11,\"title\":\"Issue11\",\"comment\":\"comment11\",\"author\":\"author11\",\"isOpen\":1},{\"id\":12,\"title\":\"Issue12\",\"comment\":\"comment12\",\"author\":\"author12\",\"isOpen\":1},{\"id\":13,\"title\":\"Issue13\",\"comment\":\"comment13\",\"author\":\"author13\",\"isOpen\":1},{\"id\":14,\"title\":\"Issue14\",\"comment\":\"comment14\",\"author\":\"author14\",\"isOpen\":0},{\"id\":15,\"title\":\"Issue15\",\"comment\":\"comment15\",\"author\":\"author15\",\"isOpen\":1},{\"id\":16,\"title\":\"Issue16\",\"comment\":\"comment16\",\"author\":\"author16\",\"isOpen\":1},{\"id\":17,\"title\":\"Issue17\",\"comment\":\"comment17\",\"author\":\"author17\",\"isOpen\":1},{\"id\":18,\"title\":\"Issue18\",\"comment\":\"comment18\",\"author\":\"author18\",\"isOpen\":1},{\"id\":19,\"title\":\"Issue19\",\"comment\":\"comment19\",\"author\":\"author19\",\"isOpen\":0},{\"id\":20,\"title\":\"Issue20\",\"comment\":\"comment20\",\"author\":\"author20\",\"isOpen\":1}]\nchai.request(server)\n    .get(\"/api/issue?page=1\")\n    .end((err, res) => {\n        expect(res).to.have.status(200);\n        for(let i=0;i<10;i++){\n            expect(res.body[i]).to.deep.includes(issues_list_1[i])\n        }\n    chai.request(server)\n    .get(\"/api/issue?page=2\")\n    .end((err, res) => {\n    expect(res).to.have.status(200);\n    for(let i=0;i<10;i++){\n        expect(res.body[i]).to.deep.includes(issues_list_2[i])\n    }\n    done();\n});\n    });",
+              "err": {},
+              "uuid": "efcd2eee-c11b-4313-9aa0-4fae9ea1f7d2",
+              "parentUUID": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Server should return a list of issues when we choose the option from filter.",
+              "fullTitle": "Testing Backend.  Server should return a list of issues when we choose the option from filter.",
+              "timedOut": false,
+              "duration": 40,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let issues_list_1_isOpen = [{\"id\":1,\"title\":\"Issue1\",\"comment\":\"comment1\",\"author\":\"author1\",\"isOpen\":1},{\"id\":2,\"title\":\"Issue2\",\"comment\":\"comment2\",\"author\":\"author2\",\"isOpen\":1},{\"id\":3,\"title\":\"Issue3\",\"comment\":\"comment3\",\"author\":\"author3\",\"isOpen\":1},{\"id\":4,\"title\":\"Issue4\",\"comment\":\"comment4\",\"author\":\"author4\",\"isOpen\":1},{\"id\":7,\"title\":\"Issue7\",\"comment\":\"comment7\",\"author\":\"author7\",\"isOpen\":1},{\"id\":8,\"title\":\"Issue8\",\"comment\":\"comment8\",\"author\":\"author8\",\"isOpen\":1},{\"id\":9,\"title\":\"Issue9\",\"comment\":\"comment9\",\"author\":\"author9\",\"isOpen\":1},{\"id\":11,\"title\":\"Issue11\",\"comment\":\"comment11\",\"author\":\"author11\",\"isOpen\":1},{\"id\":12,\"title\":\"Issue12\",\"comment\":\"comment12\",\"author\":\"author12\",\"isOpen\":1},{\"id\":13,\"title\":\"Issue13\",\"comment\":\"comment13\",\"author\":\"author13\",\"isOpen\":1}]\nlet issues_list_1_closed = [{\"id\":5,\"title\":\"Issue5\",\"comment\":\"comment5\",\"author\":\"author5\",\"isOpen\":0},{\"id\":6,\"title\":\"Issue6\",\"comment\":\"comment6\",\"author\":\"author6\",\"isOpen\":0},{\"id\":10,\"title\":\"Issue10\",\"comment\":\"comment10\",\"author\":\"author10\",\"isOpen\":0},{\"id\":14,\"title\":\"Issue14\",\"comment\":\"comment14\",\"author\":\"author14\",\"isOpen\":0},{\"id\":19,\"title\":\"Issue19\",\"comment\":\"comment19\",\"author\":\"author19\",\"isOpen\":0},{\"id\":24,\"title\":\"Issue24\",\"comment\":\"comment24\",\"author\":\"author24\",\"isOpen\":0},{\"id\":29,\"title\":\"Issue29\",\"comment\":\"comment29\",\"author\":\"author29\",\"isOpen\":0}]\nlet issues_list_2_isOpen = [{\"id\":15,\"title\":\"Issue15\",\"comment\":\"comment15\",\"author\":\"author15\",\"isOpen\":1},{\"id\":16,\"title\":\"Issue16\",\"comment\":\"comment16\",\"author\":\"author16\",\"isOpen\":1},{\"id\":17,\"title\":\"Issue17\",\"comment\":\"comment17\",\"author\":\"author17\",\"isOpen\":1},{\"id\":18,\"title\":\"Issue18\",\"comment\":\"comment18\",\"author\":\"author18\",\"isOpen\":1},{\"id\":20,\"title\":\"Issue20\",\"comment\":\"comment20\",\"author\":\"author20\",\"isOpen\":1},{\"id\":21,\"title\":\"Issue21\",\"comment\":\"comment21\",\"author\":\"author21\",\"isOpen\":1},{\"id\":22,\"title\":\"Issue22\",\"comment\":\"comment22\",\"author\":\"author22\",\"isOpen\":1},{\"id\":23,\"title\":\"Issue23\",\"comment\":\"comment23\",\"author\":\"author23\",\"isOpen\":1},{\"id\":25,\"title\":\"Issue25\",\"comment\":\"comment25\",\"author\":\"author25\",\"isOpen\":1},{\"id\":26,\"title\":\"Issue26\",\"comment\":\"comment26\",\"author\":\"author26\",\"isOpen\":1}]\nchai.request(server)\n    .get(\"/api/issue?page=1&isOpen=true\")\n    .end((err, res) => {\n        expect(res).to.have.status(200);\n        for(let i=0;i<10;i++){\n            expect(res.body[i]).to.deep.includes(issues_list_1_isOpen[i])\n        }\n    chai.request(server)\n    .get(\"/api/issue?page=2&isOpen=true\")\n    .end((err, res) => {\n    expect(res).to.have.status(200);\n    for(let i=0;i<10;i++){\n        expect(res.body[i]).to.deep.includes(issues_list_2_isOpen[i])\n    }\n    chai.request(server)\n    .get(\"/api/issue?page=1&isOpen=false\")\n    .end((err, res) => {\n    expect(res).to.have.status(200);\n    for(let i=0;i<7;i++){\n        expect(res.body[i]).to.deep.includes(issues_list_1_closed[i])\n    }\n    done();\n    });\n});\n});",
+              "err": {},
+              "uuid": "c84637ee-8feb-40d5-a2b5-253e39f9967e",
+              "parentUUID": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Server should update the issue",
+              "fullTitle": "Testing Backend.  Server should update the issue",
+              "timedOut": false,
+              "duration": 122,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let update_issue = {\n    title: \"title updated by backend testing\",\n    comment: \"comment updated by backend testing\",\n    author: \"author25\",\n    isOpen: 0\n}\nchai.request(server)\n    .patch(\"/api/issue/25\")\n    .send(update_issue)\n    .end((err, res) => {\n        expect(res).to.have.status(200);\n        chai.request(server)\n            .get(\"/api/issue/25\")\n            .end((err, res) => {\n                expect(res).to.have.status(200);\n                expect(res.body).to.deep.includes(update_issue)\n                done();\n            });\n    });",
+              "err": {},
+              "uuid": "5eedfdd9-d481-4e1f-b752-58dc34e236b6",
+              "parentUUID": "441ebc36-210c-418b-8528-0ed4dcec8f0c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "045d1ccd-c00a-4da6-870e-856d3b221343",
+            "f4969e89-7863-43ce-82e3-c40e682f95fa",
+            "efcd2eee-c11b-4313-9aa0-4fae9ea1f7d2",
+            "c84637ee-8feb-40d5-a2b5-253e39f9967e",
+            "5eedfdd9-d481-4e1f-b752-58dc34e236b6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 14546,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.2.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}

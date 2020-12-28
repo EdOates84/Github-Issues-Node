@@ -29,7 +29,7 @@ class IssuePage extends Component {
 
     fetchData = () => {
         const {isOpen, page} = this.state;
-        const fetchUrl = (isOpen == null) ? `/api/list-issues?page=${page}` : `/api/list-issues?page=${page}&isOpen=${isOpen}`;
+        const fetchUrl = (isOpen == null) ? `/api/issue?page=${page}` : `/api/issue?page=${page}&isOpen=${isOpen}`;
         axios.get(fetchUrl)
         .then(res => {
             console.log(res)
